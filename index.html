@@ -209,14 +209,6 @@
         .voucher-card.claimed .voucher-title { color: #a4b0be; }
         .voucher-card.claimed .btn-claim { background: #ced6e0; color: #ffffff; cursor: default; }
 
-        }
-        .btn-buzzer {
-            background: radial-gradient(circle, #ff4757, #ff6b81); color: white;
-            border: none; width: 85px; height: 85px; border-radius: 50%; font-size: 1.8rem;
-            cursor: pointer; box-shadow: 0 6px 20px rgba(255, 71, 87, 0.4); display: block; margin: 10px auto;
-        }
-        .btn-buzzer:active { transform: scale(0.9); }
-
         .btn-music {
             background-color: #ff6b81;
             color: white;
@@ -289,13 +281,6 @@
             </div>
         </div>
 
-        <div id="buzzer-section" class="buzzer-section">
-            <h3 style="color: #ff6b81; font-size: 1.1rem;">🚨 Love Buzzer Interaktif</h3>
-            <p style="font-size: 0.8rem; color:#777;">Pencet tombol hati di bawah kalau kamu lagi kangen Bayu sekarang! 😜</p>
-            <button class="btn-buzzer" onclick="pencetBuzzer()">❤️</button>
-            <p id="buzzer-text" style="font-weight: bold; color: #ff4757; margin-top: 10px; min-height: 20px;"></p>
-        </div>
-
         <audio id="bg-music" src="https://mp3tourl.com/audio/1790180170824-7ac20e7a-b544-44eb-b854-b6172c269586.mp3" loop></audio>
         
         <button class="btn-music" onclick="putarMusik()">🎵 Putar Musik</button>
@@ -308,28 +293,6 @@
             if (!audioCtx) {
                 audioCtx = new (window.AudioContext || window.webkitAudioContext)();
             }
-        }
-
-        // SYNTHESIZER INTERNAL UNTUK SUARA BUZZER MAINAN LUCU (DIT, DIT!)
-        function bunyikanBuzzerInternal() {
-            initAudioContext();
-            if (audioCtx.state === 'suspended') audioCtx.resume();
-
-            let osc = audioCtx.createOscillator();
-            let gain = audioCtx.createGain();
-            
-            osc.connect(gain);
-            gain.connect(audioCtx.destination);
-            
-            osc.type = 'triangle'; // Suara retro imut mirip mainan gameboy
-            osc.frequency.setValueAtTime(180, audioCtx.currentTime);
-            osc.frequency.linearRampToValueAtTime(320, audioCtx.currentTime + 0.15);
-            
-            gain.gain.setValueAtTime(0.3, audioCtx.currentTime);
-            gain.gain.linearRampToValueAtTime(0.01, audioCtx.currentTime + 0.15);
-            
-            osc.start();
-            osc.stop(audioCtx.currentTime + 0.15);
         }
 
         const daftarAlasan = ["Cantiknyaa Bayu❤️", "Gemesin!❤️", "Jawaban Doaku❤️", "Punyaa Bayu ❤️", "Penyemangatku❤️", "Sayangnya Bayu❤️"];
@@ -401,7 +364,6 @@
                 document.getElementById("tombol-memicu-surat").style.display = "none";
                 document.getElementById("pesan-rahasia").style.display = "block";
                 document.getElementById("voucher-section").style.display = "block";
-                document.getElementById("buzzer-section").style.display = "block";
                 mulaiEfekAlasan = true;
                 alert("Surat spesial buat Litaaa, voucher kado, dan tombol rahasia sudah kebuka di bawah! ✨💖 Coba lihat, kata-kata pujiannya juga langsung berjatuhan!");
             }
@@ -420,12 +382,6 @@
             } else if (jenisVoucher === 'Surprise Date') {
                 alert("🎟️ Voucher Surprise Date BERHASIL DIKLAIM!\n\nTunggu tanggal mainnya yaa! Aku bakal siapin kejutan buat nge-date terspesial khusus buat Litaaa! 🕵️‍♂️❤️");
             }
-        }
-        
-        function pencetBuzzer() {
-            bunyikanBuzzerInternal();
-            const indexAcak = Math.floor(Math.random() * teksBuzzer.length);
-            document.getElementById("buzzer-text").innerText = teksBuzzer[indexAcak];
         }
 
         function putarMusik() {
