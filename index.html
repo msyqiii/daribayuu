@@ -18,7 +18,7 @@
         }
 
         body {
-            /* BACKGROUND UTAMA WEBSITE (zaraa 2.jpeg) */
+            /* BACKGROUND UTAMA WEBSITE */
             background-image: url('https://cdn.phototourl.com/member/2026-09-23-88075fac-2bab-4ae6-8de6-781b66ebdb38.jpg'); 
             background-size: cover;
             background-position: center;
@@ -231,8 +231,9 @@
 
     <div class="container">
         <div class="photo-frame">
-    <img src="https://cdn.phototourl.com/member/2026-09-23-3ab2a312-afc0-43c3-bb04-23226503b797.jpg" alt="Foto Lita" id="pacar-foto" onerror="this.src='https://i.imgur.com/7918w5v.jpeg';">
-    </div>
+            <!-- Menggunakan link foto terbaru dengan pengaman onerror -->
+            <img src="https://cdn.phototourl.com/member/2026-09-24-c8d5cfac-3ce2-4253-b9af-17895f783bcd.jpg" alt="Foto Lita" id="pacar-foto" onerror="this.src='https://cdn.phototourl.com/member/2026-09-23-3ab2a312-afc0-43c3-bb04-23226503b797.jpg';">
+        </div>
 
         <h1>Happy Birthday My Fav Person! ❤️</h1>
         <p class="subtitle" id="typing-text"></p>
@@ -287,7 +288,6 @@
     </div>
 
     <script>
-        // Inisialisasi Audio Context bawaan browser
         let audioCtx = null;
         function initAudioContext() {
             if (!audioCtx) {
@@ -331,9 +331,7 @@
         const tanggalUltah = new Date("September 25, 2026 00:00:00").getTime();
         const hitungMundur = setInterval(function() {
             const sekarang = new Date().getTime(); 
-            const selisih = tanggalUltah - schedulerSekarang();
-            
-            function schedulerSekarang() { return new Date().getTime(); }
+            const selisih = tanggalUltah - sekarang;
 
             const hari = Math.floor(selisih / (1000 * 60 * 60 * 24)); 
             const jam = Math.floor((selisih % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
@@ -356,7 +354,7 @@
         }, 1000);
 
         function bukaSuratLangsung() {
-            initAudioContext(); // Buka jalur audio browser
+            initAudioContext();
             const sekarang = new Date().getTime();
             if (sekarang < tanggalUltah) {
                 alert("Sabarr duluu yaaa suratnyaa masihh dikuncii, tungguu nantii malamm jam 00:00 baruu bisa dibukaa!hehehehehe");
